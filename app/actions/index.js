@@ -11,9 +11,9 @@ export function getData(){
     return (dispatch) => {
         const request = await axios.get(`${baseURL}/posts`);
         if(request.status > 400){
-            dispatch({type: DATA_UNAVAILABLE, data: null});
+            dispatch({ type: DATA_UNAVAILABLE, data: null, erros: ['Falha ao carregar dados !'] });
         }else{
-            dispatch({type:DATA_AVAILABLE, data: request.data});
+            dispatch({type:DATA_AVAILABLE, data: request.data, erros: [] });
         }
     }
 }
