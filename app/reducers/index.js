@@ -12,9 +12,11 @@ let postsState = {
 const dataReducer = (state = postsState, action) => {
     switch(action.type){
         case DATA_AVAILABLE:
-            return { ...state, posts: action.data, loading: false, errors: action.errors };
-        case DATA_AVAILABLE:
-            return { ...state, posts: [], loading: false, errors: action.errors };
+            state = Object.assign({}, state, { posts: action.posts, loading: false, errors: action.errors });
+            return state;
+        case DATA_UNAVAILABLE:
+            state = Object.assign({}, state, { posts: [], loading: false, errors: action.errors });
+            return state;
         default:
             return state;
     }

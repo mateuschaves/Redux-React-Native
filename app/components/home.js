@@ -25,7 +25,7 @@ class Home extends Component {
     }
 
     componentDidMount() {
-        this.props.getData(); 
+        this.props.getData(); //call our action
     }
 
     render() {
@@ -36,11 +36,12 @@ class Home extends Component {
                 </View>
             );
         } else {
+            console.log(this.props.posts);
             return (
                 <View style={{flex:1, backgroundColor: '#F5F5F5', paddingTop:20}}>
                     <FlatList
                         ref='listRef'
-                        data={this.props.data}
+                        data={this.props.posts}
                         renderItem={this.renderItem}
                         keyExtractor={(item, index) => index}/>
                 </View>
@@ -70,7 +71,7 @@ class Home extends Component {
 function mapStateToProps(state, props) {
     return {
         loading: state.dataReducer.loading,
-        data: state.dataReducer.data
+        posts: state.dataReducer.posts
     }
 }
 
