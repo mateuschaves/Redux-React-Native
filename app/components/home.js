@@ -27,7 +27,6 @@ class Home extends Component {
     componentDidMount() {
         this.props.getData(); 
     }
-
     render() {
         if (this.props.loading) {
             return (
@@ -36,14 +35,13 @@ class Home extends Component {
                 </View>
             );
         } else {
-            console.log(this.props.posts);
             return (
                 <View style={{flex:1, backgroundColor: '#F5F5F5', paddingTop:20}}>
                     <FlatList
                         ref='listRef'
                         data={this.props.posts}
                         renderItem={this.renderItem}
-                        keyExtractor={(item, index) => index}/>
+                        keyExtractor={(item, index) => index.toString(10)}/>
                 </View>
             );
         }
@@ -53,7 +51,7 @@ class Home extends Component {
         return (
             <View style={styles.row}>
                 <Text style={styles.title}>
-                    {(parseInt(index))}{". "}{item.title}
+                    {index}{". "}{item.title}
                 </Text>
                 <Text style={styles.description}>
                     {item.body}
